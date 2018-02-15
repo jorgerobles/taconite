@@ -123,6 +123,7 @@ function detect(xhr, type, s) {
 // 1.5+ hook
 if ($.ajaxPrefilter) {
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+        if (!jqXHR.success) jqXHR.success=jqXHR.done; // JQUERY 3.x
         jqXHR.success(function( data, status, jqXHR ) {
             if ($.taconite.autodetect)
                 detect(jqXHR, options.dataType, options);
